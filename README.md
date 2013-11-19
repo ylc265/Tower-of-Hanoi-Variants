@@ -8,7 +8,7 @@ stopped, and reset by the user.
 Intel(R) XDK
 -------------------------------------------
 This sample is part of the Intel(R) XDK tool. 
-Please sign up the beta at http://software.intel.com/en-us/html5.
+Please sign up at http://software.intel.com/en-us/html5.
 To see the technical detail of the sample, please visit the sample article page 
 at http://software.intel.com/en-us/articles/towers-of-hanoi-using-jquery-and-css. 
 
