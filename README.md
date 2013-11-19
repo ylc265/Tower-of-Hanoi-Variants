@@ -1,11 +1,13 @@
+Towers of Hanoi
+---------------------------------------
 This sample application demonstrates the use of the jQuery and CSS to
 animate the solution to the Towers of Hanoi game.  The speed of the animation
 as well as the number of discs is user controlled.  The animation can be started,
 stopped, and reset by the user. 
 
-Intel(R) HTML5 Development Environment Beta
+Intel(R) XDK
 -------------------------------------------
-This sample is part of the Intel(R) HTML5 Development Environment tool. 
+This sample is part of the Intel(R) XDK tool. 
 Please sign up the beta at http://software.intel.com/en-us/html5.
 To see the technical detail of the sample, please visit the sample article page 
 at http://software.intel.com/en-us/articles/towers-of-hanoi-using-jquery-and-css. 
