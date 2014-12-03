@@ -7,7 +7,7 @@
         "articleurl":"http://software.intel.com/en-us/articles/towers-of-hanoi-using-jquery-and-css",
         "keywords":["jQuery", "Game"],
         "highlights":["jQuery", "Game"],
-        "visible": "true",
+        "visible": "false",
         "apppreview":"true",
         "appname":"demo.towersofhanoinew",
         "relname":"4.0.0"
