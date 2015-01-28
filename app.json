@@ -10,6 +10,7 @@
         "visible": "false",
         "apppreview":"true",
         "appname":"demo.towersofhanoinew",
-        "relname":"4.0.0"
+        "relname":"4.0.0",
+  	"projectTypeName": "com.intel.xdk.projecttype.webapp"
 }
 
