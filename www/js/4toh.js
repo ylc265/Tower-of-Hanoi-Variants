@@ -127,13 +127,13 @@ $(document).ready(function() {
     var jsurface = $("#surface");
     // create the surface object.  Choosing a 30x30 coordinate system
     var surface = new Surface(jsurface, 30, 30);
-    var pins = new Array(3);
+    var pins = new Array(4);
     var queue = new Array();
     var state = 'stopped';
     var discs;
 
     function write_title() {
-        $("<div>Tower Of Hanoi</div>").addClass("toh_title").appendTo(jsurface);
+        $("<div>Tower Of Hanoi (4 poles)</div>").addClass("toh_title").appendTo(jsurface);
     }
 
     function Create_Pins() {
@@ -141,20 +141,24 @@ $(document).ready(function() {
         var jplate1 = $("<div></div>").addClass("plate").appendTo(jsurface);
         var jplate2 = $("<div></div>").addClass("plate").appendTo(jsurface);
         var jplate3 = $("<div></div>").addClass("plate").appendTo(jsurface);
+        var jplate4 = $("<div></div>").addClass("plate").appendTo(jsurface);
         var jpin1 = $("<div></div>").addClass("pin").appendTo(jsurface);
         var jpin2 = $("<div></div>").addClass("pin").appendTo(jsurface);
         var jpin3 = $("<div></div>").addClass("pin").appendTo(jsurface);
+        var jpin4 = $("<div></div>").addClass("pin").appendTo(jsurface);
         // Add the pins to the surface
-        var plate1 = surface.Add_Elem(jplate1, 1, 24, 8, 1);
-        var plate2 = surface.Add_Elem(jplate2, 11, 24, 8, 1);
-        var plate3 = surface.Add_Elem(jplate3, 21, 24, 8, 1);
-        var pin1 = surface.Add_Elem(jpin1, 4.6, 5, 0.8, 19.5);
-        var pin2 = surface.Add_Elem(jpin2, 14.6, 5, 0.8, 19.5);
-        var pin3 = surface.Add_Elem(jpin3, 24.6, 5, 0.8, 19.5);
+        var plate1 = surface.Add_Elem(jplate1, 1, 24, 6, 1);
+        var plate2 = surface.Add_Elem(jplate2, 8, 24, 6, 1);
+        var plate3 = surface.Add_Elem(jplate3, 15, 24, 6, 1);
+        var plate4 = surface.Add_Elem(jplate4, 22, 24, 6, 1);
+        var pin1 = surface.Add_Elem(jpin1, 3.8, 5, 0.8, 19.5);
+        var pin2 = surface.Add_Elem(jpin2, 10.56, 5, 0.8, 19.5);
+        var pin3 = surface.Add_Elem(jpin3, 17.46, 5, 0.8, 19.5);
+        var pin4 = surface.Add_Elem(jpin4, 24.6, 5, 0.8, 19.5);
     }
 
     function Create_Discs(disc_count) {
-        var max_width = 7;
+        var max_width = 5;
         var min_width = 3;
         var width_step = (max_width - min_width) / (disc_count - 1);
         var x_step = width_step / 2;
@@ -207,7 +211,7 @@ $(document).ready(function() {
     function Move_Disc(from_pin, to_pin, callback) {
         var from_pin_discs = pins[from_pin];
         var from_top_disc = pins[from_pin].pop();
-        var x_move = (to_pin - from_pin) * 10;
+        var x_move = (to_pin - from_pin) * 7;
         var elem = surface.Get_Elem(from_top_disc);
         pins[to_pin].push(from_top_disc);
         surface.Move_Elem(from_top_disc, elem.x, 5 - elem.h / 1.5);
@@ -229,13 +233,19 @@ $(document).ready(function() {
         }
     }
 
-    function Move_Stack(size, from, to, middle) {
+    function Move_Stack(size, from, to, middle, last) {
         if (size == 1) {
-            Move_Disc_Queue(from, to);
+          Move_Disc_Queue(from, to);
+        } else if (size == 2) {
+          Move_Disc_Queue(from, last);
+          Move_Disc_Queue(from, to);
+          Move_Disc_Queue(last, to);
         } else {
-            Move_Stack(size - 1, from, middle, to);
+            Move_Stack(size - 2, from, middle, to, last);
+            Move_Disc_Queue(from, last);
             Move_Disc_Queue(from, to);
-            Move_Stack(size - 1, middle, to, from);
+            Move_Disc_Queue(last, to);
+            Move_Stack(size - 2, middle, to, from, last);
         }
     }
 
@@ -269,10 +279,11 @@ $(document).ready(function() {
         pins[0] = discs.slice(0); // create a clone of the discs array
         pins[1] = new Array();
         pins[2] = new Array();
+        pins[3] = new Array();
         Resize_To_Window();
         delete queue;
         queue = new Array();
-        Move_Stack(pins[0].length, 0, 1, 2); // fill up the move queue
+        Move_Stack(pins[0].length, 0, 1, 2, 3); // fill up the move queue
     }
 
     function Faster() {

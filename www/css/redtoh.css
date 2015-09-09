@@ -94,7 +94,7 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ada139', end
 	-moz-border-radius: 	7em / 1.5em;
 	border-radius: 			7em / 1.5em;
 
-	color: 				hsl(55, 100%, 40%) !important;
+	color: 				hsl(55, 100%, 40%);
 	background-color: 	rgba(204, 78, 0, 0.5); /*(hsl(55, 100%, 40%);*/
 
 	-webkit-box-shadow: inset rgba(255,254,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.15) 0 -0.1em .3em, /* inner shadow */
@@ -103,10 +103,10 @@ filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ada139', end
 	-moz-box-shadow: 	inset rgba(255,254,255,0.6) 0 0.3em .3em, inset rgba(0,0,0,0.15) 0 -0.1em .3em, /* inner shadow */
 							hsl(188, 100%, 20%) 0 .1em 3px, hsl(188, 100%, 20%) 0 .3em 1px, /* color border */
 							rgba(0,0,0,0.2) 0 .5em 5px;	/* drop shadow */
-	box-shadow: 		inset rgba(255,254,255,0.7) 0.3em 0.4em .4em,  /*inner shadow */
+	/*box-shadow: 		inset rgba(255,254,255,0.7) 0.3em 0.4em .4em,  /*inner shadow */
 							inset rgba(204, 78, 0, 1.0) 0 -3.1em 0,
 							/* color border */
-							rgba(0,0,0,0.3) 0 .5em 5px;	/* drop shadow */
+							rgba(0,0,0,0.3) 0 .5em 5px;	/* drop shadow */*/
 
 
 }

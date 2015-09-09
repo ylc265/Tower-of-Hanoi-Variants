@@ -87,6 +87,20 @@ function Surface(jelem, width, height) {
                 complete: callback
             };
         }
+        var elemdom = this.elems[ielem].jelem[0];
+        if (!elemdom.changedColor) {
+          console.log("success");
+          elemdom.changedColor = 1;
+          elemdom.style["background-color"] = "white";
+        } else {
+          if (elemdom.changedColor == 1) {
+            elemdom.changedColor = 0;
+            elemdom.style["background-color"] = "#cc4e00";
+          } else {
+            elemdom.changedColor = 1;
+            elemdom.style["background-color"] = "white";
+          }
+        }
         if (this.animate === true) {
             this.elems[ielem].jelem.animate({
                 left: pto_x,
@@ -133,7 +147,7 @@ $(document).ready(function() {
     var discs;
 
     function write_title() {
-        $("<div>Tower Of Hanoi</div>").addClass("toh_title").appendTo(jsurface);
+        $("<div>Red Tower Of Hanoi</div>").addClass("toh_title").appendTo(jsurface);
     }
 
     function Create_Pins() {
@@ -231,11 +245,14 @@ $(document).ready(function() {
 
     function Move_Stack(size, from, to, middle) {
         if (size == 1) {
-            Move_Disc_Queue(from, to);
+            Move_Disc_Queue(from, middle);
+            Move_Disc_Queue(middle, to);
         } else {
-            Move_Stack(size - 1, from, middle, to);
-            Move_Disc_Queue(from, to);
-            Move_Stack(size - 1, middle, to, from);
+            Move_Stack(size - 1, from, to, middle);
+            Move_Disc_Queue(from, middle);
+            Move_Stack(size - 1, to, from, middle);
+            Move_Disc_Queue(middle, to);
+            Move_Stack(size - 1, from, to, middle);
         }
     }
 

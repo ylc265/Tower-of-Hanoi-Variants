@@ -133,7 +133,7 @@ $(document).ready(function() {
     var discs;
 
     function write_title() {
-        $("<div>Tower Of Hanoi</div>").addClass("toh_title").appendTo(jsurface);
+        $("<div>Circular Tower of Hanoi (efficient)</div>").addClass("toh_title").appendTo(jsurface);
     }
 
     function Create_Pins() {
@@ -233,10 +233,23 @@ $(document).ready(function() {
         if (size == 1) {
             Move_Disc_Queue(from, to);
         } else {
-            Move_Stack(size - 1, from, middle, to);
+            Move_Stack2(size - 1, from, middle, to);
             Move_Disc_Queue(from, to);
-            Move_Stack(size - 1, middle, to, from);
+            Move_Stack2(size - 1, middle, to, from);
         }
+    }
+
+    function Move_Stack2(size, from, to, middle) {
+      if (size == 1) {
+        Move_Disc_Queue(from, middle);
+        Move_Disc_Queue(middle, to);
+      } else {
+        Move_Stack2(size-1, from, to, middle);
+        Move_Disc_Queue(from, middle);
+        Move_Stack(size-1, to, from, middle);
+        Move_Disc_Queue(middle, to);
+        Move_Stack2(size-1, from, to, middle);
+      }
     }
 
     function Remove_Discs() {
